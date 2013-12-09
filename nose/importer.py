@@ -91,6 +91,8 @@ class Importer(object):
                         del sys.modules[part_fqname]
                         mod = load_module(part_fqname, fh, filename, desc)
                 else:
+                    with open('/tmp/nose.log', 'a') as f:
+                        f.write("D: Loading args %s\n" % str((part_fqname, fh, filename, desc)))
                     mod = load_module(part_fqname, fh, filename, desc)
             finally:
                 if fh:
